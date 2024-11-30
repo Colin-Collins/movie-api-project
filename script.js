@@ -1,8 +1,7 @@
 $(document).ready(function () {
-    const API_KEY = 'efe997958e3569e81c2f7e7ddc3b580a'; // Replace with your TMDb API key
+    const API_KEY = 'efe997958e3569e81c2f7e7ddc3b580a'; 
     const BASE_URL = 'https://api.themoviedb.org/3';
 
-    // Search Movies
     $('#searchButton').click(function () {
         const query = $('#searchBox').val().trim();
         if (query) {
@@ -12,7 +11,6 @@ $(document).ready(function () {
         }
     });
 
-    // AJAX Call for Searching Movies
     function searchMovies(query) {
         $.ajax({
             url: `${BASE_URL}/search/movie`,
@@ -30,10 +28,9 @@ $(document).ready(function () {
         });
     }
 
-    // Display Search Results
     function displaySearchResults(movies) {
         $('#results').empty();
-        $('#details').empty(); // Clear details section
+        $('#details').empty(); 
         if (movies.length === 0) {
             $('#results').append('<p>No results found.</p>');
             return;
@@ -48,14 +45,11 @@ $(document).ready(function () {
             $('#results').append(movieElement);
         });
 
-        // Add click event to each movie
         $('.movie').click(function () {
             const movieId = $(this).data('id');
             getMovieDetails(movieId);
         });
     }
-
-    // AJAX Call for Movie Details
     function getMovieDetails(movieId) {
         $.ajax({
             url: `${BASE_URL}/movie/${movieId}`,
@@ -72,7 +66,6 @@ $(document).ready(function () {
         });
     }
 
-    // Display Movie Details
     function displayMovieDetails(movie) {
         $('#details').html(`
             <h2>${movie.title}</h2>
